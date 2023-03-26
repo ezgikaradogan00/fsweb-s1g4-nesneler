@@ -15,11 +15,16 @@ const serpmeKahvalti = {isim: "Serpme Kahvaltı", fiyat: 16, kategori:"Kahvaltı
 */
 
 
-function MenuElemaniOlustur(/*Kodlar buraya*/){
-	/*Kodlar buraya*/
+function MenuElemaniOlustur(name,price,cate){
+	const yeniObje = {
+		isim: name,
+		fiyat: price,
+		kategori: cate
+	};
+	return yeniObje;
 }
 
-
+console.log("görev 1a ", MenuElemaniOlustur('Cheeseburger', 8, 'Burgerler'));
 
 /*  Görev 1b (otomatik test yok): 
 	Fonksiyonu çağırın!
@@ -29,7 +34,19 @@ function MenuElemaniOlustur(/*Kodlar buraya*/){
 	3. Tüm döndürülen sonuçları konsolda gözlemleyin (console.log)
 	
 	Örnek: MenuElemaniOlustur("Karışık Pizza",5,"Pizzalar") şunu döndürür: {isim:"Karışık Pizza",fiyat:5,kategori:"Pizzalar"}
-*/
+
+	*/
+
+function MenuElemaniOlustur1(name1,price1,cate1) {
+	const menuElemani = {
+		isim: name1,
+		fiyat: price1,
+		kategori: cate1
+	};
+	return menuElemani;
+}
+
+console.log("görev 1b ", MenuElemaniOlustur("Karışık Pizza",5,"Pizzalar"));
 
 
 
@@ -46,12 +63,31 @@ function MenuElemaniOlustur(/*Kodlar buraya*/){
 */
 
 
-const burger = {
-	isim: "Burger", 
-	fiyat: 18, 
-	kategori: "Öğle Yemeği", 
+	const burger = {
+		isim: "Burger", 
+		fiyat: 18, 
+		kategori: "Öğle Yemeği", 
+		indirim: function(meslek){
+			if(meslek =="öğretmen" || meslek == "öğrenci")
+			{
+				return this.fiyat*0.75;
+			}
+			else
+			{
+				return this.fiyat*0.9;
+			}
+		}
+	}
 
-}
+	
+
+
+
+	
+
+
+ 
+
 
 
 
@@ -72,6 +108,14 @@ const degerlendirmeler = [
 	1. Sadece Ahmet'in geribildirimini konsolda görüntüleyin - fonksiyona gerek yok
 */
 
+for (let i = 0; i < degerlendirmeler.length; i++) {
+	if (degerlendirmeler[i].isim === "Ahmet") {
+		console.log("GÖREV 3" ,degerlendirmeler[i].geribildirim);
+		   
+	}
+		
+}
+	  
 
 
 /*  Görev 4 (ototest yok):  
@@ -79,6 +123,10 @@ const degerlendirmeler = [
 	1. Bu geribildirimi Reyna'nın değerlendirmesine ekleyin - "bu mekan bir harika dostum, yine de garsonun gülümsememesinden puan kırdım"
 	2. degerlendirmeler dizisini konsolda görüntüleyerek çalışmanızı kontrol edin
 */
+
+
+
+	
 
 
 
@@ -94,10 +142,34 @@ const degerlendirmeler = [
 */
 
 
-function DegerledirmeEkle(/*Kodlar buraya */){
-	/*Kodlar buraya */
-	
+
+function DegerledirmeEkle(degerlendirmeler,isim,puan,geribildirim){
+	const yeniObj = {
+		isim: isim,
+		puan: puan,
+		geribildirim: geribildirim
+	};
+	degerlendirmeler.push(yeniObj);
+	return degerlendirmeler;
 }
+
+console.log(DegerledirmeEkle(degerlendirmeler, 'Hurşut', 2, 'Boktan yemekler!'));
+	
+
+		
+
+
+
+
+
+		
+
+	
+
+
+	
+	
+
 
 
 
@@ -112,11 +184,20 @@ function DegerledirmeEkle(/*Kodlar buraya */){
 */
 
 
-function AnahtardanDegerlendirmeAl(/*Kodlar buraya*/) {
-	/*Kodlar buraya*/
+function AnahtardanDegerlendirmeAl(key,index) {
+	const mess = 
+		key[index].isim +
+		" isimli kişi " +
+		key[index].puan +
+		" puan verdi ve şunları yazdı: " +
+		key[index]. geribildirim;
+
+	console.log("GÖREV 6" , mess);
+	return mess;	
 
 }
 
+AnahtardanDegerlendirmeAl(degerlendirmeler,0);
 
 
 /*  Görev 7:  
@@ -132,9 +213,16 @@ function AnahtardanDegerlendirmeAl(/*Kodlar buraya*/) {
 */
 
 
-function SonDegerlendirmeyiAl(/*Kodlar buraya*/) {
-	/*Kodlar buraya*/
-} 
+function SonDegerlendirmeyiAl(dizi) {
+	return (
+	  dizi[dizi.length - 1]["isim"] +
+	  " isimli kişi " +
+	  dizi[dizi.length - 1]["puan"] +
+	  " puan verdi ve şunları yazdı: " +
+	  dizi[dizi.length - 1]["geribildirim"]
+	);
+  }
+  console.log("GÖREV 7" ,SonDegerlendirmeyiAl(degerlendirmeler));
 
 
 
@@ -154,9 +242,11 @@ function SonDegerlendirmeyiAl(/*Kodlar buraya*/) {
 	]
 */
 
-function PuanaGoreDegerlendirmeAl(/* Kodlar buraya */) {
-    /* Kodlar buraya */
+function PuanaGoreDegerlendirmeAl(değerlendirmeler, girilenPuan) {
+	return değerlendirmeler.filter ((değerlendirmeler) => Math.floor(değerlendirmeler.puan) === girilenPuan);
 }
+    
+console.log("Bonus 1" ,PuanaGoreDegerlendirmeAl(degerlendirmeler, 4));
 
 
 /*  BONUS 2:    
@@ -166,9 +256,8 @@ function PuanaGoreDegerlendirmeAl(/* Kodlar buraya */) {
 	
 */
 
-function UzunDegerlendirmeleriAl(/* Kodlar buraya */) {
-    /* Kodlar buraya */
-}
+
+
 
 
 /*  BONUS 3:  
